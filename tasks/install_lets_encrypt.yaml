@@ -1,0 +1,27 @@
+---
+
+- name: add repository
+  apt_repository:
+      repo: ppa:certbot/certbot
+      state: present
+  become: yes
+- name: update
+  apt:
+      update_cache: yes
+  become: yes
+  tags: update
+- name: upgrade
+  apt:
+      upgrade: yes
+  become: yes
+  tags: update
+- name: use apt to install nginx
+  apt:
+      name: "{{ packages }}"
+      update_cache: yes
+      state: latest
+  vars:
+      packages:
+          - python-certbot-nginx 
+  become: yes
+  tags: install
