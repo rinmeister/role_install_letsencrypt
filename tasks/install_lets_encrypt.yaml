@@ -15,7 +15,7 @@
       upgrade: yes
   become: yes
   tags: update
-- name: use apt to install nginx
+- name: use apt to install lets encrypt
   apt:
       name: "{{ packages }}"
       update_cache: yes
